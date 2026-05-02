@@ -9,27 +9,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('perangkats', function (Blueprint $table) {
-            $table->id('id_perangkat'); // Primary Key
-
-            // String namaPerangkat
-            $table->string('nama_perangkat');
-
-            // String merk
+            $table->id();
+            $table->unsignedInteger('admin_id')->unique(); // Foreign key ke tabel admins (Setiap perangkat hanya bisa dimiliki oleh satu admin)
+            $table->string('nama'); // Nama perangkat
             $table->string('merk');
-
-            // String serialNumber (Dibuat unik karena setiap perangkat punya SN berbeda)
-            $table->string('serial_number')->unique();
-
-            // String assignedTo 
-            // Jika ini berisi nama orang (String), gunakan string. 
-            // Jika ini relasi ke tabel Admin, gunakan foreignId.
-            $table->string('terpasang di')->nullable();
-
-            // String status (Misal: Ready, In Use, Repair)
-            $table->string('status')->default('Teredia');
-
-            // Timestamp updatedAt & createdAt
-            // Laravel otomatis menghandle ini lewat timestamps()
+            $table->string('serial_number')->unique(); // String serialNumber (Dibuat unik karena setiap perangkat punya SN berbeda)
+            $table->enum('status', ['tersedia', 'digunakan', 'perbaikan'])->default('tersedia'); // String status (Misal: tersedia, digunakan, perbaikan)
             $table->timestamps();
         });
     }

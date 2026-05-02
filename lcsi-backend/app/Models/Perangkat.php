@@ -12,8 +12,8 @@ class Perangkat extends Model
     protected $fillable = [
         'nama_perangkat',
         'merk',
-        'jumlah',
-        'kondisi',
-        'lokasi'
+        'serial_number',
+        'terpasang di',
+        'status',
     ];
 }

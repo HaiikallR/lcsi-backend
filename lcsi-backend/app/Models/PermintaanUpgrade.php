@@ -10,7 +10,7 @@ class PermintaanUpgrade extends Model
     protected $primaryKey = 'id_permintaan_upgrade';
 
     protected $fillable = [
-        'id_user',
+        'id_pelanggan',
         'paket_lama',
         'paket_baru',
         'harga_baru',

@@ -12,22 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('teknisis', function (Blueprint $table) {
-            // idTeknisi (Primary Key)
-            $table->id('id_teknisi');
-
-            // String nama
+            $table->id();
             $table->string('nama');
-
-            // String noHp
             $table->string('no_hp');
-
-            // String wilayah (Misal: Bekasi, Jakarta, dsb)
-            $table->string('wilayah');
-
-            // String status (Misal: Aktif, Standby, Off)
-            $table->string('status')->default('Aktif');
-
-            // createdAt & updatedAt otomatis dari Laravel
+            $table->string('wilayah'); // String wilayah (Misal: Bekasi, Jakarta, dsb)
+            $table->enum('status', ['aktif', 'siap', 'tidak aktif'])->default('Aktif'); // String status (Misal: Aktif, Siap, Tidak Aktif)
             $table->timestamps();
         });
     }

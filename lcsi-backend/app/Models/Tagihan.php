@@ -10,12 +10,17 @@ class Tagihan extends Model
     protected $primaryKey = 'id_tagihan';
 
     protected $fillable = [
-        'id_user',
+        'id_pelanggan',
+        'jumlah',
         'bulan',
         'tahun',
-        'jumlah_tagihan',
+        'bukti_bayar',
+        'catatan admin',
         'status',
-        'jatuh_tempo'
+        'tanggal_bayar',
+        'tanggal_verifikasi',
+
+
     ];
 
     // Relasi: Tagihan ini milik siapa?

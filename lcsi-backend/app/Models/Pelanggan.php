@@ -19,8 +19,6 @@ class Pelanggan extends Model
         'status',
         'total_tagihan',
         'fcm_token',
-        'total_tagihan',
-        'fcm_token'
     ];
 
     // Relasi: Satu pelanggan bisa punya banyak tiket

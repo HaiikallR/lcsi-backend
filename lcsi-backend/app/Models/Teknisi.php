@@ -10,9 +10,9 @@ class Teknisi extends Model
     protected $primaryKey = 'id_teknisi';
 
     protected $fillable = [
-        'nama_teknisi',
+        'nama',
         'no_hp',
-        'wilayah_tugas',
+        'wilayah',
         'status'
     ];
 

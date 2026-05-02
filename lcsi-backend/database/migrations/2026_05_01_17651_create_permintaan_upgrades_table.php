@@ -12,29 +12,18 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('permintaan_upgrades', function (Blueprint $table) {
-            $table->id('id_permintaan_upgrade'); // Primary Key
-
-            // String idUser dan namaUser
+            $table->id();
             $table->unsignedBigInteger('id_pelanggan');
-
-            // Detail Paket
             $table->string('paket_lama');
             $table->string('paket_baru');
             $table->string('harga_baru');
-
-            // Status (Misal: Pending, Approved, Rejected)
-            $table->string('status')->default('Menunggu_persetujuan');
-
-            // Waktu Pengajuan (Sesuai variabel timestamp)
-            $table->timestamp('waktu_pengajuan')->useCurrent();
-
-            // Waktu Persetujuan atau Penolakan (Nullable karena diisi belakangan)
-            $table->timestamp('disetujui_pada')->nullable();
+            $table->string('status')->default('menunggu persetujuan'); // Status (Misal: Menunggu, Disetujui, Ditolak)
+            $table->timestamp('waktu_pengajuan')->useCurrent(); // Waktu Pengajuan (Sesuai variabel timestamp)
+            $table->timestamp('disetujui_pada')->nullable(); // Waktu Persetujuan atau Penolakan (Nullable karena diisi belakangan)
             $table->timestamp('ditolak_pada')->nullable();
+            $table->timestamps();
 
-            $table->timestamps(); // createAt dan updatedAt standar Laravel
-
-            // 2. Definisi Foreign Key Constraint
+            // Definisi Foreign Key Constraint
             $table->foreign('id_pelanggan')
                 ->references('id_pelanggan') // Primary Key di tabel pelanggan
                 ->on('pelanggans')           // Nama tabel referensi

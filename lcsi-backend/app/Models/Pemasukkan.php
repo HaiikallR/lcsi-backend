@@ -10,7 +10,7 @@ class Pemasukan extends Model
     protected $primaryKey = 'id_pemasukan';
 
     protected $fillable = [
-        'id_user',
+        'id_pelanggan',
         'nama_pelanggan',
         'jenis_pemasukan',
         'jumlah_bayar',

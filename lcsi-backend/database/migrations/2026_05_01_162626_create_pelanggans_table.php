@@ -12,28 +12,18 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('pelanggans', function (Blueprint $table) {
-            $table->id('id_pelanggan'); // Primary Key
-
-            // Identitas & Akun
+            $table->id();
             $table->string('nama');
             $table->string('email')->unique();
-            $table->string('kata_sandi'); // Wajib ada untuk login backend
-            $table->string('no_telp');
-            $table->text('alamat');
-
-            // Layanan & Status
+            $table->string('password'); // Wajib ada untuk login backend
+            $table->string('no_hp');
+            $table->longText('alamat');
             $table->string('paket_langganan'); // Gabungan dari paket & paketLangganan
-            $table->string('status')->default('aktif');
-
-            // Keuangan
-            $table->integer('total_tagihan')->default(0); // Pengganti totalTagihan/userTotalTagihan
+            $table->enum('status', ['aktif', 'tidak aktif'])->default('aktif');
 
             // Keamanan & Notifikasi
             $table->text('fcm_token')->nullable(); // Token untuk push notification Flutter
-
-            // Waktu
-            $table->timestamp('dibuat_pada')->useCurrent(); // Pengganti createdAt/userCreatedAt
-            $table->timestamps(); // Standar Laravel (created_at & updated_at)
+            $table->timestamps();
         });
     }
 

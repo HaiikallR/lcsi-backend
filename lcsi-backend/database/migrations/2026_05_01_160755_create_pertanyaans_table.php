@@ -9,22 +9,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('pertanyaans', function (Blueprint $table) {
-            $table->id('id_pertanyaan'); // Primary Key default Laravel
-
-            // String pertanyaan
+            $table->id();
             $table->string('pertanyaan');
-
-            // String jawaban
-            // Menggunakan text karena jawaban biasanya lebih panjang dari 255 karakter
-            $table->text('jawaban');
-
-            // String kategori (Misal: Jaringan, Perangkat, Akun)
-            $table->string('kategori');
-
-            // int urutan
-            // Digunakan untuk menyusun tampilan di Flutter (OrderBy urutan)
-            $table->integer('urutan')->default(0);
-
+            $table->longText('jawaban'); // Menggunakan text karena jawaban biasanya lebih panjang dari 255 karakter
+            $table->string('kategori'); // String kategori (Misal: Jaringan, Perangkat, Akun)
+            $table->integer('urutan')->default(0); // Digunakan untuk menyusun tampilan di Flutter (OrderBy urutan)
             $table->timestamps();
         });
     }

@@ -9,23 +9,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('pemberitahuans', function (Blueprint $table) {
-            $table->id('id_pemberitahuan'); // Primary Key
-
-            // String judul
+            $table->id();
             $table->string('judul');
-
-            // String isiPesan
-            // Menggunakan text agar pesan tidak terpotong jika panjang
-            $table->text('isi_pesan');
-
-            // String kategori
-            $table->string('kategori');
-
-            // Timestamp tanggalSent
-            // Kita gunakan timestamp agar sesuai dengan variabel kamu
-            $table->timestamp('waktu')->useCurrent();
-
-
+            $table->text('isi_pesan'); // Menggunakan text agar pesan tidak terpotong jika panjang
+            $table->string('kategori'); // String kategori
             $table->timestamps();
         });
     }

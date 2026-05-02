@@ -9,20 +9,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('admins', function (Blueprint $table) {
-            // id_admin (Primary Key)
-            $table->id('id_admin');
-
-            // Nama Admin
+            $table->id();
             $table->string('nama');
-
-            // Email (Dibuat unik agar tidak ada email ganda)
-            $table->string('email')->unique();
-
-            // Password (Wajib ada untuk login, meskipun tidak ada di list data kamu)
-            $table->string('password');
-
-            // Status (Misal: Active, Inactive)
-            $table->string('status')->default('aktif');
+            $table->string('email')->unique(); // Email (Dibuat unik agar tidak ada email ganda)
+            $table->string('password'); // Password (Wajib ada untuk login, meskipun tidak ada di list data kamu)
+            $table->string('status')->default('aktif'); // Status (Misal: Active, Inactive)
 
             // Kolom untuk menyimpan token login (Penting untuk API Sanctum)
 

@@ -12,7 +12,7 @@ class Pemberitahuan extends Model
     protected $fillable = [
         'judul',
         'isi_pesan',
-        'target_user',
-        'status_terkirim'
+        'kategori',
+        'waktu'
     ];
 }
