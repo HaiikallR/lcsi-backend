@@ -10,12 +10,13 @@ return new class extends Migration
     {
         Schema::create('perangkats', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('admin_id')->unique(); // Foreign key ke tabel admins (Setiap perangkat hanya bisa dimiliki oleh satu admin)
             $table->string('nama'); // Nama perangkat
             $table->string('merk');
             $table->string('serial_number')->unique(); // String serialNumber (Dibuat unik karena setiap perangkat punya SN berbeda)
             $table->enum('status', ['tersedia', 'digunakan', 'perbaikan'])->default('tersedia'); // String status (Misal: tersedia, digunakan, perbaikan)
             $table->timestamps();
+
+            $table->foreignId('id_admin')->unique()->constrained('admins')->onDelete('cascade'); // Foreign key ke tabel admins (Setiap perangkat hanya bisa dimiliki oleh satu admin)
         });
     }
 

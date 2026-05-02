@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('nama');
             $table->string('no_hp');
             $table->string('wilayah'); // String wilayah (Misal: Bekasi, Jakarta, dsb)
-            $table->enum('status', ['aktif', 'siap', 'tidak aktif'])->default('Aktif'); // String status (Misal: Aktif, Siap, Tidak Aktif)
+            $table->enum('status', ['aktif', 'siap', 'tidak aktif'])->default('aktif'); // String status (Misal: Aktif, Siap, Tidak Aktif)
             $table->timestamps();
         });
     }

@@ -13,21 +13,15 @@ return new class extends Migration
     {
         Schema::create('permintaan_upgrades', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_pelanggan');
             $table->string('paket_lama');
             $table->string('paket_baru');
             $table->string('harga_baru');
-            $table->string('status')->default('menunggu persetujuan'); // Status (Misal: Menunggu, Disetujui, Ditolak)
-            $table->timestamp('waktu_pengajuan')->useCurrent(); // Waktu Pengajuan (Sesuai variabel timestamp)
+            $table->enum('status', ['menunggu', 'disetujui', 'ditolak'])->default('menunggu'); // Status (Misal: menunggu, disetujui, ditolak)
             $table->timestamp('disetujui_pada')->nullable(); // Waktu Persetujuan atau Penolakan (Nullable karena diisi belakangan)
             $table->timestamp('ditolak_pada')->nullable();
             $table->timestamps();
 
-            // Definisi Foreign Key Constraint
-            $table->foreign('id_pelanggan')
-                ->references('id_pelanggan') // Primary Key di tabel pelanggan
-                ->on('pelanggans')           // Nama tabel referensi
-                ->onDelete('cascade');      // Jika pelanggan dihapus, riwayat upgrade ikut terhapus
+            $table->foreignId('id_pelanggan')->constrained('pelanggans')->onDelete('cascade');
         });
     }
 

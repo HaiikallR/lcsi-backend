@@ -11,7 +11,7 @@ return new class extends Migration
         Schema::create('pemberitahuans', function (Blueprint $table) {
             $table->id();
             $table->string('judul');
-            $table->text('isi_pesan'); // Menggunakan text agar pesan tidak terpotong jika panjang
+            $table->longText('isi_pesan'); // Menggunakan text agar pesan tidak terpotong jika panjang
             $table->string('kategori'); // String kategori
             $table->timestamps();
         });

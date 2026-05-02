@@ -13,7 +13,6 @@ return new class extends Migration
             $table->string('pertanyaan');
             $table->longText('jawaban'); // Menggunakan text karena jawaban biasanya lebih panjang dari 255 karakter
             $table->string('kategori'); // String kategori (Misal: Jaringan, Perangkat, Akun)
-            $table->integer('urutan')->default(0); // Digunakan untuk menyusun tampilan di Flutter (OrderBy urutan)
             $table->timestamps();
         });
     }

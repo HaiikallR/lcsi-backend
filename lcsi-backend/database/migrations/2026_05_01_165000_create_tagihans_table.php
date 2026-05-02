@@ -13,33 +13,17 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('tagihans', function (Blueprint $table) {
-            $table->id('id_tagihan'); // Primary Key
-
-            // Relasi & Identitas
-            $table->unsignedBigInteger('id_pelanggan');
-
-
-            // Keuangan & Waktu
+            $table->id();
             $table->integer('jumlah');
             $table->string('bulan');
             $table->string('tahun');
-
-            // Bukti & Catatan
-            $table->string('bukti_bayar')->nullable(); // Pengganti buktiUrl (menyimpan nama file)
-            $table->text('catatan_admin')->nullable();
-            $table->string('status')->default('Belum Bayar');
-
-            // Timestamp (Sesuai variabel kamu)
+            $table->text('catatan')->nullable();
+            $table->enum('status', ['belum bayar', 'menunggu', 'sudah bayar'])->default('belum bayar');
             $table->timestamp('tanggal_bayar')->nullable();
-            $table->timestamp('tanggal_verifikasi')->nullable(); // Pengganti tglVerifikasi & waktuVerifikasi
-
-            // createdAt & updatedAt otomatis dari Laravel
+            $table->timestamp('tanggal_verifikasi')->nullable();
             $table->timestamps();
 
-            $table->foreign('id_pelanggan')
-                ->references('id_pelanggan')
-                ->on('pelanggans')
-                ->onDelete('cascade');
+            $table->foreignId('id_pelanggan')->constrained('pelanggans')->onDelete('cascade');
         });
     }
 

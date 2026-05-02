@@ -20,9 +20,6 @@ class DashboardController extends Controller
 
             $pendingPayments = Pemasukan::where('status', 'Pending')->count();
 
-
-
-
             return response()->json([
                 'success' => true,
                 'message' => 'Statistik Dashboard berhasil dimuat',

@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('pemasukans', function (Blueprint $table) {
             $table->id();
-            $table->string('jenis_pemasukan'); // String jenisPemasukan (Misal: Tagihan Bulanan, Pasang Baru)
+            $table->string('jenis_pemasukan'); // Misal: Tagihan Bulanan, Pasang Baru
             $table->integer('jumlah_bayar');
-            $table->string('metode_bayar'); // String metodeBayar (Misal: Transfer Bank, Tunai)
+            $table->string('metode_bayar'); // Misal: Transfer Bank, Tunai
             $table->string('bukti_bayar')->nullable(); // Berisi nama file atau URL foto bukti transfer
             $table->text('keterangan')->nullable();
             $table->enum('status', ['lunas', 'menunggu'])->default('menunggu');
@@ -23,11 +23,9 @@ return new class extends Migration
             $table->string('tahun_tagihan');
             $table->timestamp('tanggal_bayar')->nullable();
             $table->timestamps();
-            // 2. Definisikan relasi Foreign Key secara formal
-            $table->foreign('id_pelanggan')
-                ->references('id_pelanggan') // Merujuk ke Primary Key tabel pelanggan
-                ->on('pelanggans')
-                ->onDelete('cascade'); // Jika pelanggan dihapus, data pemasukan terkait ikut terhapus
+
+            // Relations
+            $table->foreignId('id_pelanggan')->constrained('pelanggans')->onDelete('cascade');
         });
     }
 
@@ -36,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pemasukkans');
+        Schema::dropIfExists('pemasukans');
     }
 };
