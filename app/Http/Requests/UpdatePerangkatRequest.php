@@ -20,8 +20,8 @@ class UpdatePerangkatRequest extends FormRequest
             'nama_perangkat' => ['required', 'string', 'max:255'],
             'merk' => ['required', 'string', 'max:100'],
             'serial_number' => ['required', 'string', 'max:100', Rule::unique('perangkats')->ignore($this->route('perangkat'))],
-            'terpasang_di' => ['nullable', 'string', 'max:255'],
             'status' => ['required', 'in:tersedia,digunakan,perbaikan'],
+            'id_pelanggan' => ['required', 'exists:pelanggans,id', Rule::unique('perangkats', 'id_pelanggan')->ignore($this->route('perangkat'))],
         ];
     }
 
@@ -34,6 +34,7 @@ class UpdatePerangkatRequest extends FormRequest
             'serial_number.unique' => 'Serial number sudah digunakan perangkat lain.',
             'status.required' => 'Status wajib diisi.',
             'status.in' => 'Status harus tersedia, digunakan, atau perbaikan.',
+            'id_pelanggan.unique' => 'Pelanggan ini sudah memiliki perangkat.',
         ];
     }
 }

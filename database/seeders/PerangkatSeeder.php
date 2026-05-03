@@ -2,9 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\Admin;
+use App\Models\Pelanggan;
 use App\Models\Perangkat;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class PerangkatSeeder extends Seeder
@@ -14,14 +13,16 @@ class PerangkatSeeder extends Seeder
      */
     public function run(): void
     {
-        $adminIds = Admin::query()->pluck('id');
+        $pelangganIds = Pelanggan::query()->pluck('id');
 
-        if ($adminIds->isEmpty()) {
-            $adminIds = collect([Admin::factory()->create()->id]);
+        if ($pelangganIds->isEmpty()) {
+            $pelangganIds = collect([Pelanggan::factory()->create()->id]);
         }
 
-        Perangkat::factory(30)
-            ->state(fn () => ['id_admin' => $adminIds->random()])
-            ->create();
+        foreach ($pelangganIds as $pelangganId) {
+            Perangkat::factory()
+                ->state(fn () => ['id_pelanggan' => $pelangganId])
+                ->create();
+        }
     }
 }

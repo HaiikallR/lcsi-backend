@@ -1,22 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Teknisi extends Model
 {
+    use HasFactory;
 
     protected $fillable = [
         'nama',
         'no_hp',
-        'wilayah',
-        'status'
+        'status',
     ];
-
-    // Relasi: Satu teknisi bisa mengerjakan banyak tiket
-    public function tiket()
-    {
-        return $this->hasMany(Tiket::class, 'id_teknisi', 'id');
-    }
 }

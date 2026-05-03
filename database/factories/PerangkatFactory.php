@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
-use App\Models\Admin;
+use App\Models\Pelanggan;
 use App\Models\Perangkat;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -24,9 +24,8 @@ class PerangkatFactory extends Factory
             'nama_perangkat' => fake()->words(2, true),
             'merk' => fake()->randomElement(['Cisco', 'MikroTik', 'TP-Link', 'Ubiquiti']),
             'serial_number' => strtoupper(fake()->unique()->bothify('SN-#####??')),
-            'terpasang_di' => fake()->optional()->city(),
             'status' => fake()->randomElement(['tersedia', 'digunakan', 'perbaikan']),
-            'id_admin' => Admin::factory(),
+            'id_pelanggan' => Pelanggan::factory(),
         ];
     }
 

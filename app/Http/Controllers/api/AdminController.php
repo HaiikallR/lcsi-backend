@@ -1,96 +1,65 @@
 <?php
 
-namespace App\Http\Controllers\api;
+declare(strict_types=1);
+
+namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\AdminCollection;
-use Illuminate\Http\Request;
-use App\Models\Admin;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\StoreAdminRequest;
 use App\Http\Requests\UpdateAdminRequest;
-
+use App\Http\Resources\AdminCollection;
+use App\Http\Resources\AdminResource;
+use App\Models\Admin;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Response;
 
 class AdminController extends Controller
 {
-    public function index()
+    public function index(): AdminCollection
     {
-        return new AdminCollection(Admin::orderByDesc('id')->paginate(20));
+        $this->authorize('viewAny', Admin::class);
+
+        return new AdminCollection(Admin::orderByDesc('id')->paginate(2));
     }
 
-    /**
-     * Menambah Admin baru dengan password default "admin123".
-     */
-    public function store(Request $request)
+    public function store(StoreAdminRequest $request): JsonResponse
     {
-        $validator = Validator::make($request->all(), [
-            'nama'  => 'required|string',
-            'email' => 'required|email|unique:admins,email',
-            'status' => 'required|in:Aktif,Suspended',
-        ]);
+        $this->authorize('create', Admin::class);
 
-        if ($validator->fails()) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Gagal: Email sudah terdaftar atau data tidak lengkap',
-                'errors'  => $validator->errors()
-            ], 422);
+        $admin = Admin::create($request->validated());
+
+        return (new AdminResource($admin))->response()->setStatusCode(201);
+    }
+
+    public function show(Admin $admin): AdminResource
+    {
+        $this->authorize('view', $admin);
+
+        return new AdminResource($admin);
+    }
+
+    public function update(UpdateAdminRequest $request, Admin $admin): AdminResource
+    {
+        $this->authorize('update', $admin);
+
+        $data = $request->validated();
+
+        // Hapus password dari update jika tidak diisi
+        if (empty($data['password'])) {
+            unset($data['password']);
         }
 
-        $admin = Admin::create([
-            'nama'     => $request->nama,
-            'email'    => $request->email,
-            'role'     => 'Staff Admin', // Sesuai logika Flutter
-            'status'   => $request->status,
-            'password' => Hash::make('admin123'), // Password default
-        ]);
+        $admin->update($data);
 
-        return response()->json([
-            'success' => true,
-            'message' => 'Data Admin Berhasil Disimpan',
-            'data'    => $admin
-        ], 201);
+        return new AdminResource($admin);
     }
 
-    /**
-     * Memperbarui data admin (Nama dan Status).
-     */
-    public function update(Request $request, $id)
+    public function destroy(Admin $admin): Response
     {
-        $admin = Admin::findOrFail($id);
+        $this->authorize('delete', $admin);
 
-        $validator = Validator::make($request->all(), [
-            'nama'   => 'required|string',
-            'status' => 'required|in:Aktif,Suspended',
-        ]);
+        Admin::destroy($admin->id);
 
-        if ($validator->fails()) {
-            return response()->json(['success' => false, 'errors' => $validator->errors()], 422);
-        }
-
-        $admin->update([
-            'nama'   => $request->nama,
-            'status' => $request->status,
-        ]);
-
-        return response()->json([
-            'success' => true,
-            'message' => 'Data Admin Berhasil Diperbarui',
-        ]);
-    }
-
-    /**
-     * Menghapus akun admin.
-     */
-    public function destroy($id)
-    {
-        $admin = Admin::findOrFail($id);
-        $admin->delete();
-
-        return response()->json([
-            'success' => true,
-            'message' => 'Akun admin berhasil dihapus'
-        ]);
+        return response()->noContent();
     }
 }

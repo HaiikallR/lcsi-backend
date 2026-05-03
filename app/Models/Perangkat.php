@@ -17,13 +17,12 @@ class Perangkat extends Model
         'nama_perangkat',
         'merk',
         'serial_number',
-        'terpasang_di',
         'status',
-        'id_admin',
+        'id_pelanggan',
     ];
 
-    public function admin(): BelongsTo
+    public function pelanggan(): BelongsTo
     {
-        return $this->belongsTo(Admin::class, 'id_admin');
+        return $this->belongsTo(Pelanggan::class, 'id_pelanggan');
     }
 }

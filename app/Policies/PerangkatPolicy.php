@@ -26,12 +26,14 @@ class PerangkatPolicy
 
     public function update(Admin $admin, Perangkat $perangkat): bool
     {
-        return $admin->id === $perangkat->id_admin;
+        // return $admin->id === $perangkat->id_admin;
+        return true;
     }
 
     public function delete(Admin $admin, Perangkat $perangkat): bool
     {
-        return $admin->id === $perangkat->id_admin;
+        // return $admin->id === $perangkat->id_admin;
+        return true;
     }
 
     public function restore(Admin $admin, Perangkat $perangkat): bool

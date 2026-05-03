@@ -1,30 +1,44 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
+use Database\Factories\TagihanFactory;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Tagihan extends Model
 {
-    protected $primaryKey = 'id_tagihan';
+    use HasFactory;
 
     protected $fillable = [
         'id_pelanggan',
         'jumlah',
         'bulan',
         'tahun',
-        'bukti_bayar',
-        'catatan admin',
+        'catatan',
         'status',
         'tanggal_bayar',
         'tanggal_verifikasi',
-
-
     ];
 
-    // Relasi: Tagihan ini milik siapa?
-    public function pelanggan()
+    protected function casts(): array
     {
-        return $this->belongsTo(Pelanggan::class, 'id_user', 'id_pelanggan');
+        return [
+            'tanggal_bayar' => 'datetime',
+            'tanggal_verifikasi' => 'datetime',
+        ];
+    }
+
+    public function pelanggan(): BelongsTo
+    {
+        return $this->belongsTo(Pelanggan::class, 'id_pelanggan', 'id');
+    }
+
+    protected static function newFactory(): TagihanFactory
+    {
+        return TagihanFactory::new();
     }
 }

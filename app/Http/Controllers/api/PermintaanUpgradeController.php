@@ -1,81 +1,64 @@
 <?php
 
-namespace App\Http\Controllers\api;
+declare(strict_types=1);
+
+namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Pelanggan;
-use Illuminate\Http\Request;
+use App\Http\Resources\PermintaanUpgradeCollection;
+use App\Http\Resources\PermintaanUpgradeResource;
 use App\Models\PermintaanUpgrade;
-use App\Models\User;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\DB;
+use App\Http\Requests\Storepermintaan_upgradeRequest;
+use App\Http\Requests\Updatepermintaan_upgradeRequest;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Response;
 
 class PermintaanUpgradeController extends Controller
 {
-    /**
-     * Menampilkan daftar permintaan upgrade yang berstatus 'pending'.
-     */
-    public function index()
+    public function index(): PermintaanUpgradeCollection
     {
-        $requests = PermintaanUpgrade::where('status', 'pending')
-            ->orderBy('timestamp', 'desc')
-            ->get();
+        $this->authorize('viewAny', PermintaanUpgrade::class);
 
-        return response()->json([
-            'success' => true,
-            'data' => $requests
-        ]);
+        return new PermintaanUpgradeCollection(
+            PermintaanUpgrade::with('pelanggan:id,nama,email,paket_langganan')
+                ->orderByDesc('id')
+                ->paginate(10)
+        );
     }
 
-    /**
-     * Menyetujui Permintaan Upgrade.
-     * Mengubah paket user dan status permintaan secara bersamaan.
-     */
-    public function approve($id)
+    public function store(Storepermintaan_upgradeRequest $request): JsonResponse
     {
-        return DB::transaction(function () use ($id) {
-            $upgradeReq = PermintaanUpgrade::findOrFail($id);
-            $user = Pelanggan::findOrFail($upgradeReq->user_id);
+        $this->authorize('create', PermintaanUpgrade::class);
 
-            // 1. Update paket di tabel users
-            $user->update([
-                'paket' => $upgradeReq->paket_baru
-            ]);
+        $permintaanUpgrade = PermintaanUpgrade::create($request->validated());
 
-            // 2. Update status permintaan menjadi success
-            $upgradeReq->update([
-                'status' => 'success',
-                'approved_at' => Carbon::now()
-            ]);
-
-            // --- LOGIKA NOTIFIKASI ---
-            // Jika user memiliki fcm_token, kirim notifikasi melalui service
-            if ($user->fcm_token) {
-                // notification_service->sendUpgradeSuccess($user->fcm_token, $upgradeReq->paket_baru);
-            }
-
-            return response()->json([
-                'success' => true,
-                'message' => "Berhasil disetujui & Notifikasi dikirim",
-            ]);
-        });
+        return (new PermintaanUpgradeResource($permintaanUpgrade->load('pelanggan:id,nama,email,paket_langganan')))
+            ->response()
+            ->setStatusCode(201);
     }
 
-    /**
-     * Menolak Permintaan Upgrade.
-     */
-    public function reject($id)
+    public function show(PermintaanUpgrade $permintaanUpgrade): PermintaanUpgradeResource
     {
-        $upgradeReq = PermintaanUpgrade::findOrFail($id);
+        $this->authorize('view', $permintaanUpgrade);
 
-        $upgradeReq->update([
-            'status' => 'rejected',
-            'rejected_at' => Carbon::now()
-        ]);
+        return new PermintaanUpgradeResource($permintaanUpgrade->load('pelanggan:id,nama,email,paket_langganan'));
+    }
 
-        return response()->json([
-            'success' => true,
-            'message' => "Permintaan ditolak",
-        ]);
+    public function update(Updatepermintaan_upgradeRequest $request, PermintaanUpgrade $permintaanUpgrade): PermintaanUpgradeResource
+    {
+        $this->authorize('update', $permintaanUpgrade);
+
+        $permintaanUpgrade->update($request->validated());
+
+        return new PermintaanUpgradeResource($permintaanUpgrade->load('pelanggan:id,nama,email,paket_langganan'));
+    }
+
+    public function destroy(PermintaanUpgrade $permintaanUpgrade): Response
+    {
+        $this->authorize('delete', $permintaanUpgrade);
+
+        PermintaanUpgrade::destroy($permintaanUpgrade->id);
+
+        return response()->noContent();
     }
 }

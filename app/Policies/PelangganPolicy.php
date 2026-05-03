@@ -19,7 +19,7 @@ class PelangganPolicy
         return true;
     }
 
-    public function create(Admin $admin): bool
+    public function create(Pelanggan $pelanggan): bool
     {
         return true;
     }

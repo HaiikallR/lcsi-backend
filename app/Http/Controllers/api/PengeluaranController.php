@@ -1,109 +1,64 @@
 <?php
 
-namespace App\Http\Controllers\api;
+declare(strict_types=1);
+
+namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\StorePengeluaranRequest;
+use App\Http\Requests\UpdatePengeluaranRequest;
+use App\Http\Resources\PengeluaranCollection;
+use App\Http\Resources\PengeluaranResource;
 use App\Models\Pengeluaran;
-use Illuminate\Support\Facades\Validator;
-use Carbon\Carbon;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Response;
 
 class PengeluaranController extends Controller
 {
-    /**
-     * Menampilkan daftar pengeluaran berdasarkan filter bulan dan tahun.
-     */
-    public function index(Request $request)
+    public function index(): PengeluaranCollection
     {
-        // Default ke bulan dan tahun sekarang jika tidak ada input
-        $bulan = $request->get('bulan', Carbon::now()->translatedFormat('F'));
-        $tahun = $request->get('tahun', Carbon::now()->year);
+        $this->authorize('viewAny', Pengeluaran::class);
 
-        $expenses = Pengeluaran::where('bulan', $bulan)
-            ->where('tahun', $tahun)
-            ->orderBy('tanggal', 'desc')
-            ->get();
-
-        // Hitung total untuk ringkasan laporan
-        $totalPengeluaran = $expenses->sum('jumlah');
-
-        return response()->json([
-            'success' => true,
-            'periode' => "$bulan $tahun",
-            'total_pengeluaran' => $totalPengeluaran,
-            'data' => $expenses
-        ]);
+        return new PengeluaranCollection(
+            Pengeluaran::with(['tiket:id,jenis_pekerjaan,status', 'teknisi:id,nama'])
+                ->orderByDesc('id')
+                ->paginate(10)
+        );
     }
 
-    /**
-     * Menyimpan catatan pengeluaran baru.
-     */
-    public function store(Request $request)
+    public function store(StorePengeluaranRequest $request): JsonResponse
     {
-        $validator = Validator::make($request->all(), [
-            'judul'    => 'required|string',
-            'kategori' => 'required|in:Operasional,Gaji,Sewa,Pembelian Alat,Lainnya',
-            'jumlah'   => 'required|numeric',
-        ]);
+        $this->authorize('create', Pengeluaran::class);
 
-        if ($validator->fails()) {
-            return response()->json(['errors' => $validator->errors()], 422);
-        }
+        $pengeluaran = Pengeluaran::create($request->validated());
 
-        // Otomatis tentukan bulan, tahun, dan tanggal
-        $now = Carbon::now();
-
-        $expense = Pengeluaran::create([
-            'judul'    => $request->judul,
-            'kategori' => $request->kategori,
-            'jumlah'   => $request->jumlah,
-            'tanggal'  => $now,
-            'bulan'    => $now->translatedFormat('F'), // Contoh: Januari
-            'tahun'    => $now->year,
-        ]);
-
-        return response()->json([
-            'success' => true,
-            'message' => 'Pengeluaran berhasil dicatat',
-            'data'    => $expense
-        ], 201);
+        return (new PengeluaranResource($pengeluaran->load(['tiket:id,jenis_pekerjaan,status', 'teknisi:id,nama'])))
+            ->response()
+            ->setStatusCode(201);
     }
 
-    /**
-     * Menghapus catatan pengeluaran.
-     */
-    public function destroy($id)
+    public function show(Pengeluaran $pengeluaran): PengeluaranResource
     {
-        $expense = Pengeluaran::findOrFail($id);
-        $expense->delete();
+        $this->authorize('view', $pengeluaran);
 
-        return response()->json([
-            'success' => true,
-            'message' => 'Catatan pengeluaran berhasil dihapus'
-        ]);
+        return new PengeluaranResource($pengeluaran->load(['tiket:id,jenis_pekerjaan,status', 'teknisi:id,nama']));
     }
 
-    /**
-     * Endpoint khusus untuk data laporan PDF.
-     */
-    public function report(Request $request)
+    public function update(UpdatePengeluaranRequest $request, Pengeluaran $pengeluaran): PengeluaranResource
     {
-        $request->validate([
-            'bulan' => 'required',
-            'tahun' => 'required'
-        ]);
+        $this->authorize('update', $pengeluaran);
 
-        $data = Pengeluaran::where('bulan', $request->bulan)
-            ->where('tahun', $request->tahun)
-            ->get();
+        $pengeluaran->update($request->validated());
 
-        return response()->json([
-            'meta' => [
-                'organisasi' => 'LCSI - Laporan Pengeluaran',
-                'periode' => $request->bulan . ' ' . $request->tahun,
-                'total' => $data->sum('jumlah')
-            ],
-            'items' => $data
-        ]);
+        return new PengeluaranResource($pengeluaran->load(['tiket:id,jenis_pekerjaan,status', 'teknisi:id,nama']));
+    }
+
+    public function destroy(Pengeluaran $pengeluaran): Response
+    {
+        $this->authorize('delete', $pengeluaran);
+
+        Pengeluaran::destroy($pengeluaran->id);
+
+        return response()->noContent();
     }
 }

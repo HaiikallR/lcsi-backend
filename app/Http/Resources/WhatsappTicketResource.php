@@ -1,0 +1,19 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Http\Resources;
+
+use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\JsonResource;
+
+class WhatsappTicketResource extends JsonResource
+{
+    public function toArray(Request $request): array
+    {
+        return [
+            'pesan' => (string) ($this->resource['pesan'] ?? ''),
+            'url_whatsapp' => (string) ($this->resource['url_whatsapp'] ?? ''),
+        ];
+    }
+}

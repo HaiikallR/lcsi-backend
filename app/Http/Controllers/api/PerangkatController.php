@@ -21,8 +21,7 @@ class PerangkatController extends Controller
         $this->authorize('viewAny', Perangkat::class);
 
         return new PerangkatCollection(
-            Perangkat::query()
-                ->where('id_admin', $request->user()->id)
+            Perangkat::with('pelanggan:id,nama,email')
                 ->orderByDesc('id')
                 ->paginate(10)
         );
@@ -34,17 +33,19 @@ class PerangkatController extends Controller
 
         $perangkat = Perangkat::create([
             ...$request->validated(),
-            'id_admin' => (int) $request->user()->id,
+            'id_pelanggan' => (int) $request->id_pelanggan,
         ]);
 
-        return (new PerangkatResource($perangkat))->response()->setStatusCode(201);
+        return (new PerangkatResource($perangkat->load('pelanggan:id,nama,email')))
+            ->response()
+            ->setStatusCode(201);
     }
 
     public function show(Perangkat $perangkat): PerangkatResource
     {
         $this->authorize('view', $perangkat);
 
-        return new PerangkatResource($perangkat);
+        return new PerangkatResource($perangkat->load('pelanggan:id,nama,email'));
     }
 
     public function update(UpdatePerangkatRequest $request, Perangkat $perangkat): PerangkatResource
@@ -53,7 +54,7 @@ class PerangkatController extends Controller
 
         $perangkat->update($request->validated());
 
-        return new PerangkatResource($perangkat);
+        return new PerangkatResource($perangkat->load('pelanggan:id,nama,email'));
     }
 
     public function destroy(Perangkat $perangkat): Response
