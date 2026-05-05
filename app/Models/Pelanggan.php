@@ -20,6 +20,7 @@ class Pelanggan extends Model
         'alamat',
         'paket_langganan',
         'status',
+        'device_token',
     ];
 
     protected $hidden = [

@@ -22,6 +22,8 @@ return new class extends Migration
             $table->longText('alamat');
             $table->string('paket_langganan');
             $table->enum('status', ['aktif', 'tidak aktif'])->default('aktif');
+            $table->string('device_token')->nullable(); // Untuk 1 device per pelanggan, atau bisa buat tabel terpisah untuk multi-device
+
             $table->timestamps();
         });
     }

@@ -1,0 +1,1739 @@
+{
+  "info": {
+    "_postman_id": "5d3ae7ec-eca3-46bd-83cc-4b0b7c498fff",
+    "name": "lcsi",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "33685038"
+  },
+  "item": [
+    {
+      "name": "admin",
+      "item": [
+        {
+          "name": "daftar admin",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{API_URL}}/api/admin",
+              "host": [
+                "{{API_URL}}"
+              ],
+              "path": [
+                "api",
+                "admin"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "tambah admin",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"nama\": \"akun tes\",\r\n    \"email\": \"tes@example.com\",\r\n    \"password\": \"password\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{API_URL}}/api/admin",
+              "host": [
+                "{{API_URL}}"
+              ],
+              "path": [
+                "api",
+                "admin"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "edit admin",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"nama\": \"akun tes ganti\",\r\n    \"email\": \"tes@example.com\",\r\n    \"password\": \"password\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{API_URL}}/api/admin/(Ganti ID)",
+              "host": [
+                "{{API_URL}}"
+              ],
+              "path": [
+                "api",
+                "admin",
+                "(Ganti ID)"
+              ],
+              "query": [
+                {
+                  "key": "",
+                  "value": null,
+                  "type": "text",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "hapus admin",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"nama\": \"akun tes ganti\",\r\n    \"email\": \"tes@example.com\",\r\n    \"password\": \"password\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{API_URL}}/api/admin/(Ganti ID)",
+              "host": [
+                "{{API_URL}}"
+              ],
+              "path": [
+                "api",
+                "admin",
+                "(Ganti ID)"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "pelanggan",
+      "item": [
+        {
+          "name": "daftar pelanggan",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{API_URL}}/api/pelanggan",
+              "host": [
+                "{{API_URL}}"
+              ],
+              "path": [
+                "api",
+                "pelanggan"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "tambah pelanggan",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"nama\": \"tes pelanggan\",\r\n    \"email\": \"tespelanggan@example.com\",\r\n    \"password\": \"password\",\r\n    \"no_hp\": \"08\",\r\n    \"alamat\": \"tes\",\r\n    \"paket_langganan\": \"40mbps\",\r\n    \"status\": \"aktif\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{API_URL}}/api/pelanggan",
+              "host": [
+                "{{API_URL}}"
+              ],
+              "path": [
+                "api",
+                "pelanggan"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "edit pelanggan",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"nama\": \"tes pelanggan ganti\",\r\n    \"email\": \"tespelanggan@example.com\",\r\n    \"password\": \"password\",\r\n    \"no_hp\": \"08\",\r\n    \"alamat\": \"tes\",\r\n    \"paket_langganan\": \"40mbps\",\r\n    \"status\": \"aktif\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{API_URL}}/api/pelanggan/(ganti dengan ID)",
+              "host": [
+                "{{API_URL}}"
+              ],
+              "path": [
+                "api",
+                "pelanggan",
+                "(ganti dengan ID)"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "hapus pelanggan",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{API_URL}}/api/pelanggan/(ganti dengan ID)",
+              "host": [
+                "{{API_URL}}"
+              ],
+              "path": [
+                "api",
+                "pelanggan",
+                "(ganti dengan ID)"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "perangkat",
+      "item": [
+        {
+          "name": "daftar perangkat",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{API_URL}}/api/perangkat",
+              "host": [
+                "{{API_URL}}"
+              ],
+              "path": [
+                "api",
+                "perangkat"
+              ],
+              "query": [
+                {
+                  "key": "",
+                  "value": null,
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "tambah perangkat",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"nama_perangkat\": \"tes perangkat\",\r\n    \"merk\": \"zte-40\",\r\n    \"serial_number\": \"zte-0001\",\r\n    \"status\": \"tersedia\",\r\n    \"id_pelanggan\": 1\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{API_URL}}/api/perangkat",
+              "host": [
+                "{{API_URL}}"
+              ],
+              "path": [
+                "api",
+                "perangkat"
+              ],
+              "query": [
+                {
+                  "key": "",
+                  "value": null,
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "edit perangkat",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"nama_perangkat\": \"asdasdasdt\",\r\n    \"merk\": \"MikroTik\",\r\n    \"serial_number\": \"SN-80197WO\",\r\n    \"status\": \"tersedia\",\r\n    \"id_pelanggan\": 1\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{API_URL}}/api/perangkat/(ganti dengan ID)",
+              "host": [
+                "{{API_URL}}"
+              ],
+              "path": [
+                "api",
+                "perangkat",
+                "(ganti dengan ID)"
+              ],
+              "query": [
+                {
+                  "key": "",
+                  "value": null,
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "hapus perangkat",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"nama_perangkat\": \"asdasdasdt\",\r\n    \"merk\": \"MikroTik\",\r\n    \"serial_number\": \"SN-80197WO\",\r\n    \"status\": \"tersedia\",\r\n    \"id_pelanggan\": 1\r\n}"
+            },
+            "url": {
+              "raw": "{{API_URL}}/api/perangkat/29",
+              "host": [
+                "{{API_URL}}"
+              ],
+              "path": [
+                "api",
+                "perangkat",
+                "29"
+              ],
+              "query": [
+                {
+                  "key": "",
+                  "value": null,
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "teknisi",
+      "item": [
+        {
+          "name": "daftar teknisi",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"nama_perangkat\": \"asdasdasdt\",\r\n    \"merk\": \"MikroTik\",\r\n    \"serial_number\": \"SN-80197WO\",\r\n    \"status\": \"tersedia\",\r\n    \"id_pelanggan\": 1\r\n}"
+            },
+            "url": {
+              "raw": "{{API_URL}}/api/teknisi",
+              "host": [
+                "{{API_URL}}"
+              ],
+              "path": [
+                "api",
+                "teknisi"
+              ],
+              "query": [
+                {
+                  "key": "",
+                  "value": null,
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "tambah teknisi",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"nama\": \"tes teknisi\",\r\n    \"no_hp\": \"0888\",\r\n    \"status\": \"aktif\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{API_URL}}/api/teknisi",
+              "host": [
+                "{{API_URL}}"
+              ],
+              "path": [
+                "api",
+                "teknisi"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "edit teknisi",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"nama\": \"tes teknisi ganti\",\r\n    \"no_hp\": \"0888\",\r\n    \"status\": \"aktif\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{API_URL}}/api/teknisi/(ganti dengan ID)",
+              "host": [
+                "{{API_URL}}"
+              ],
+              "path": [
+                "api",
+                "teknisi",
+                "(ganti dengan ID)"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "hapus teknisi",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{API_URL}}/api/teknisi/(ganti dengan ID)",
+              "host": [
+                "{{API_URL}}"
+              ],
+              "path": [
+                "api",
+                "teknisi",
+                "(ganti dengan ID)"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "tiket",
+      "item": [
+        {
+          "name": "daftar tiket",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{API_URL}}/api/tiket",
+              "host": [
+                "{{API_URL}}"
+              ],
+              "path": [
+                "api",
+                "tiket"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "tambah tiket",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"id_pelanggan\": 1,\r\n    \"id_teknisi\": 1,\r\n    \"jenis_pekerjaan\": \"pasang baru\",\r\n    \"calon_pelanggan_nama\": \"tes\",\r\n    \"calon_pelanggan_no_hp\": \"000\",\r\n    \"calon_pelanggan_alamat\": \"bebasin\",\r\n    \"ongkos_teknisi\": 10000,\r\n    \"status\": \"menunggu\",\r\n    \"tanggal_selesai\": \"\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{API_URL}}/api/tiket",
+              "host": [
+                "{{API_URL}}"
+              ],
+              "path": [
+                "api",
+                "tiket"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "edit tiket",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"id_pelanggan\": 1,\r\n    \"id_teknisi\": 1,\r\n    \"jenis_pekerjaan\": \"maintenance\",\r\n    \"calon_pelanggan_nama\": \"tes\",\r\n    \"calon_pelanggan_no_hp\": \"000\",\r\n    \"calon_pelanggan_alamat\": \"bebasin\",\r\n    \"ongkos_teknisi\": 10000,\r\n    \"status\": \"menunggu\",\r\n    \"tanggal_selesai\": \"\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{API_URL}}/api/tiket/(ganti dengan ID)",
+              "host": [
+                "{{API_URL}}"
+              ],
+              "path": [
+                "api",
+                "tiket",
+                "(ganti dengan ID)"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "hapus tiket",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"id_pelanggan\": 1,\r\n    \"id_teknisi\": 1,\r\n    \"jenis_pekerjaan\": \"maintenance\",\r\n    \"calon_pelanggan_nama\": \"tes\",\r\n    \"calon_pelanggan_no_hp\": \"000\",\r\n    \"calon_pelanggan_alamat\": \"bebasin\",\r\n    \"ongkos_teknisi\": 10000,\r\n    \"status\": \"menunggu\",\r\n    \"tanggal_selesai\": \"\"\r\n}"
+            },
+            "url": {
+              "raw": "{{API_URL}}/api/tiket/(ganti dengan ID)",
+              "host": [
+                "{{API_URL}}"
+              ],
+              "path": [
+                "api",
+                "tiket",
+                "(ganti dengan ID)"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "pengeluaran",
+      "item": [
+        {
+          "name": "daftar pengeluaran",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{API_URL}}/api/pengeluaran",
+              "host": [
+                "{{API_URL}}"
+              ],
+              "path": [
+                "api",
+                "pengeluaran"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "hapus pengeluaran",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{API_URL}}/api/pengeluaran/(ganti dengan ID)",
+              "host": [
+                "{{API_URL}}"
+              ],
+              "path": [
+                "api",
+                "pengeluaran",
+                "(ganti dengan ID)"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "pemasukan",
+      "item": [
+        {
+          "name": "daftar pemasukan",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{API_URL}}/api/pemasukan?page=1",
+              "host": [
+                "{{API_URL}}"
+              ],
+              "path": [
+                "api",
+                "pemasukan"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "tambah pemasukan",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"id_pelanggan\": 1,\n    \"jenis_pemasukan\": \"Tagihan Bulanan\",\n    \"jumlah_bayar\": 150000,\n    \"metode_bayar\": \"Transfer Bank\",\n    \"bukti_bayar\": \"https://example.com/bukti.jpg\",\n    \"keterangan\": \"Pembayaran bulan Mei 2026\",\n    \"status\": \"lunas\",\n    \"bulan_tagihan\": \"Mei\",\n    \"tahun_tagihan\": \"2026\",\n    \"tanggal_bayar\": \"2026-05-03\"\n}"
+            },
+            "url": {
+              "raw": "{{API_URL}}/api/pemasukan",
+              "host": [
+                "{{API_URL}}"
+              ],
+              "path": [
+                "api",
+                "pemasukan"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "detail pemasukan",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{API_URL}}/api/pemasukan/1",
+              "host": [
+                "{{API_URL}}"
+              ],
+              "path": [
+                "api",
+                "pemasukan",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "edit pemasukan",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id_pelanggan\": 1,\n  \"jenis_pemasukan\": \"Tagihan Bulanan\",\n  \"jumlah_bayar\": 175000,\n  \"metode_bayar\": \"QRIS\",\n  \"bukti_bayar\": null,\n  \"keterangan\": \"Diupdate setelah konfirmasi\",\n  \"status\": \"lunas\",\n  \"bulan_tagihan\": \"Mei\",\n  \"tahun_tagihan\": \"2026\",\n  \"tanggal_bayar\": \"2026-05-03\"\n}"
+            },
+            "url": {
+              "raw": "{{API_URL}}/api/pemasukan/11",
+              "host": [
+                "{{API_URL}}"
+              ],
+              "path": [
+                "api",
+                "pemasukan",
+                "11"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "hapus pemasukan",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{API_URL}}/api/pemasukan/11",
+              "host": [
+                "{{API_URL}}"
+              ],
+              "path": [
+                "api",
+                "pemasukan",
+                "11"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "permintaan upgrade",
+      "item": [
+        {
+          "name": "daftar permintaan upgrade",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{API_URL}}/api/permintaan-upgrade?page=1",
+              "host": [
+                "{{API_URL}}"
+              ],
+              "path": [
+                "api",
+                "permintaan-upgrade"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "tambah permintaan upgrade (status: menunggu)",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id_pelanggan\": 1,\n  \"paket_lama\": \"Paket 10 Mbps\",\n  \"paket_baru\": \"Paket 20 Mbps\",\n  \"harga_baru\": 250000,\n  \"status\": \"menunggu\",\n  \"disetujui_pada\": null,\n  \"ditolak_pada\": null\n}"
+            },
+            "url": {
+              "raw": "{{API_URL}}/api/permintaan-upgrade",
+              "host": [
+                "{{API_URL}}"
+              ],
+              "path": [
+                "api",
+                "permintaan-upgrade"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Tambah Permintaan Upgrade (status: disetujui)",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id_pelanggan\": 1,\n  \"paket_lama\": \"Paket 10 Mbps\",\n  \"paket_baru\": \"Paket 20 Mbps\",\n  \"harga_baru\": 250000,\n  \"status\": \"disetujui\",\n  \"disetujui_pada\": \"2026-05-03\",\n  \"ditolak_pada\": null\n}"
+            },
+            "url": {
+              "raw": "{{API_URL}}/api/permintaan-upgrade",
+              "host": [
+                "{{API_URL}}"
+              ],
+              "path": [
+                "api",
+                "permintaan-upgrade"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Tambah Permintaan Upgrade (status: ditolak)",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id_pelanggan\": 1,\n  \"paket_lama\": \"Paket 10 Mbps\",\n  \"paket_baru\": \"Paket 20 Mbps\",\n  \"harga_baru\": 250000,\n  \"status\": \"ditolak\",\n  \"disetujui_pada\": null,\n  \"ditolak_pada\": \"2026-05-03\"\n}"
+            },
+            "url": {
+              "raw": "{{API_URL}}/api/permintaan-upgrade",
+              "host": [
+                "{{API_URL}}"
+              ],
+              "path": [
+                "api",
+                "permintaan-upgrade"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Detail Permintaan Upgrade",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{API_URL}}/api/permintaan-upgrade/1",
+              "host": [
+                "{{API_URL}}"
+              ],
+              "path": [
+                "api",
+                "permintaan-upgrade",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Edit Permintaan Upgrade",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id_pelanggan\": 1,\n  \"paket_lama\": \"Paket 10 Mbps\",\n  \"paket_baru\": \"Paket 20 Mbps\",\n  \"harga_baru\": 250000,\n  \"status\": \"disetujui\",\n  \"disetujui_pada\": \"2026-05-03\",\n  \"ditolak_pada\": null\n}"
+            },
+            "url": {
+              "raw": "{{API_URL}}/api/permintaan-upgrade/1",
+              "host": [
+                "{{API_URL}}"
+              ],
+              "path": [
+                "api",
+                "permintaan-upgrade",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Hapus Permintaan Upgrade",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{API_URL}}/api/permintaan-upgrade/1",
+              "host": [
+                "{{API_URL}}"
+              ],
+              "path": [
+                "api",
+                "permintaan-upgrade",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "tagihan",
+      "item": [
+        {
+          "name": "Daftar Tagihan",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{API_URL}}/api/tagihan?page=1",
+              "host": [
+                "{{API_URL}}"
+              ],
+              "path": [
+                "api",
+                "tagihan"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Tambah Tagihan (belum bayar)",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id_pelanggan\": 1,\n  \"jumlah\": 250000,\n  \"bulan\": \"Mei\",\n  \"tahun\": \"2026\",\n  \"catatan\": \"Tagihan bulanan internet\",\n  \"status\": \"belum bayar\",\n  \"tanggal_bayar\": null,\n  \"tanggal_verifikasi\": null\n}"
+            },
+            "url": {
+              "raw": "{{API_URL}}/api/tagihan",
+              "host": [
+                "{{API_URL}}"
+              ],
+              "path": [
+                "api",
+                "tagihan"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Tambah Tagihan (sudah bayar)",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id_pelanggan\": 1,\n  \"jumlah\": 250000,\n  \"bulan\": \"Mei\",\n  \"tahun\": \"2026\",\n  \"catatan\": \"Lunas transfer\",\n  \"status\": \"sudah bayar\",\n  \"tanggal_bayar\": \"2026-05-03\",\n  \"tanggal_verifikasi\": \"2026-05-03\"\n}"
+            },
+            "url": {
+              "raw": "{{API_URL}}/api/tagihan",
+              "host": [
+                "{{API_URL}}"
+              ],
+              "path": [
+                "api",
+                "tagihan"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Detail Tagihan",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{API_URL}}/api/tagihan/1",
+              "host": [
+                "{{API_URL}}"
+              ],
+              "path": [
+                "api",
+                "tagihan",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Tagihan",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id_pelanggan\": 1,\n  \"jumlah\": 275000,\n  \"bulan\": \"Mei\",\n  \"tahun\": \"2026\",\n  \"catatan\": \"Update nominal setelah penyesuaian\",\n  \"status\": \"menunggu\",\n  \"tanggal_bayar\": \"2026-05-03\",\n  \"tanggal_verifikasi\": null\n}"
+            },
+            "url": {
+              "raw": "{{API_URL}}/api/tagihan/1",
+              "host": [
+                "{{API_URL}}"
+              ],
+              "path": [
+                "api",
+                "tagihan",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Hapus Tagihan",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{API_URL}}/api/tagihan/1",
+              "host": [
+                "{{API_URL}}"
+              ],
+              "path": [
+                "api",
+                "tagihan",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "auth",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{TOKEN}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"email\": \"markus.mcclure@example.net\",\r\n    \"password\": \"password\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{API_URL}}/api/auth/login",
+          "host": [
+            "{{API_URL}}"
+          ],
+          "path": [
+            "api",
+            "auth",
+            "login"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "API_URL",
+      "value": ""
+    },
+    {
+      "key": "TOKEN",
+      "value": "",
+      "type": "default"
+    }
+  ]
+}

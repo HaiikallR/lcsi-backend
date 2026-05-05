@@ -7,6 +7,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePelangganRequest;
 use App\Http\Requests\UpdatePelangganRequest;
+use App\Http\Requests\UpdateFcmTokenRequest;
 use App\Http\Resources\PelangganCollection;
 use App\Http\Resources\PelangganResource;
 use App\Models\Pelanggan;
@@ -50,6 +51,19 @@ class PelangganController extends Controller
         }
 
         $pelanggan->update($data);
+
+        return new PelangganResource($pelanggan);
+    }
+
+    /**
+     * PUT /api/pelanggan/{pelanggan}/fcm-token - Update FCM token
+     * Client mengirim FCM token setelah login atau ketika token baru diperoleh
+     */
+    public function updateFcmToken(UpdateFcmTokenRequest $request, Pelanggan $pelanggan): PelangganResource
+    {
+        $pelanggan->update([
+            'device_token' => $request->validated('device_token'),
+        ]);
 
         return new PelangganResource($pelanggan);
     }
