@@ -24,6 +24,7 @@ use App\Policies\TiketPolicy;
 use App\Policies\TeknisiPolicy;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Blade; 
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -50,5 +51,12 @@ class AppServiceProvider extends ServiceProvider
         Gate::policy(Notifikasi::class, NotifikasiPolicy::class);
         Gate::policy(PermintaanUpgrade::class, PermintaanUpgradePolicy::class);
         Gate::policy(Tagihan::class, TagihanPolicy::class);
+
+         // Daftarkan semua Blade Component UI
+        Blade::component('ui.badge',         \App\View\Components\Ui\Badge::class);
+        Blade::component('ui.stat-card',     \App\View\Components\Ui\StatCard::class);
+        Blade::component('ui.flash-message', \App\View\Components\Ui\FlashMessage::class);
+        Blade::component('layout.sidebar',   \App\View\Components\Layout\Sidebar::class);
+        Blade::component('layout.navbar',    \App\View\Components\Layout\Navbar::class);
     }
 }

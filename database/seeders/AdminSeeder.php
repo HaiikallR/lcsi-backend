@@ -13,6 +13,10 @@ class AdminSeeder extends Seeder
      */
     public function run(): void
     {
-        Admin::factory(10)->create();
+        Admin::create([
+            'nama' => 'Admin Utama',
+            'email' => 'admin@example.com',
+            'password' => bcrypt('admin123'),
+        ]);
     }
 }

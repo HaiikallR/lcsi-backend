@@ -14,34 +14,45 @@ use App\Models\Pelanggan;
 use App\Services\FcmNotificationService;
 use Exception;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request; // Tambahkan import Request untuk method index
 use Illuminate\Http\Response;
 
 class NotifikasiController extends Controller
 {
-    public function __construct(private FcmNotificationService $fcmService)
-    {
-    }
+    public function __construct(private FcmNotificationService $fcmService) {}
 
     /**
-     * GET /api/notifikasi - Daftar semua notifikasi
+     * GET /api/notifikasi - Daftar semua notifikasi milik pelanggan yang login
      */
-    public function index(): NotifikasiCollection
+    public function index(\Illuminate\Http\Request $request)
     {
-        $this->authorize('viewAny', Notifikasi::class);
+        $pelanggan = $request->user();
 
-        $notifikasi = Notifikasi::with('pelanggan')
+        $notifikasi = Notifikasi::query()->where('id_pelanggan', $pelanggan->id)
             ->orderByDesc('id')
-            ->paginate(10);
+            ->get();
 
-        return new NotifikasiCollection($notifikasi);
+        // ✅ Pastikan return JSON biasa bukan Resource
+        // agar field name konsisten
+        return response()->json([
+            'data' => $notifikasi->map(fn($n) => [
+                'id'           => $n->id,
+                'id_pelanggan' => $n->id_pelanggan,
+                'judul'        => $n->judul,
+                'pesan'        => $n->pesan,
+                'kategori'     => $n->kategori,
+                // ✅ Pakai created_at standar Laravel
+                'created_at'   => $n->created_at,
+                'updated_at'   => $n->updated_at,
+            ]),
+        ]);
     }
-
     /**
      * POST /api/notifikasi - Buat notifikasi baru & kirim via FCM
      */
     public function store(StoreNotifikasiRequest $request): JsonResponse
     {
-        $this->authorize('create', Notifikasi::class);
+        // $this->authorize('create', Notifikasi::class);
 
         $validated = $request->validated();
 
@@ -83,7 +94,7 @@ class NotifikasiController extends Controller
      */
     public function show(Notifikasi $notifikasi): NotifikasiResource
     {
-        $this->authorize('view', $notifikasi);
+        // $this->authorize('view', $notifikasi);
         return new NotifikasiResource($notifikasi->load('pelanggan'));
     }
 
@@ -92,7 +103,7 @@ class NotifikasiController extends Controller
      */
     public function update(UpdateNotifikasiRequest $request, Notifikasi $notifikasi): NotifikasiResource
     {
-        $this->authorize('update', $notifikasi);
+        // $this->authorize('update', $notifikasi);
         $notifikasi->update($request->validated());
 
         return new NotifikasiResource($notifikasi->load('pelanggan'));
@@ -103,8 +114,10 @@ class NotifikasiController extends Controller
      */
     public function destroy(Notifikasi $notifikasi): Response
     {
-        $this->authorize('delete', $notifikasi);
-        $notifikasi->delete(FcmNotificationService::class);
+        // $this->authorize('delete', $notifikasi);
+
+        // Perbaikan: gunakan fungsi standar Eloquent delete()
+        $notifikasi->delete($notifikasi->id);
 
         return response()->noContent();
     }

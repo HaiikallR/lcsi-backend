@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nama');
             $table->string('no_hp');
-            $table->enum('status', ['aktif', 'siap', 'tidak aktif'])->default('aktif'); // String status (Misal: Aktif, Siap, Tidak Aktif)
+            $table->enum('status', ['aktif', 'tidak aktif'])->default('aktif'); // String status (Misal: Aktif, Siap, Tidak Aktif)
             $table->timestamps();
         });
     }

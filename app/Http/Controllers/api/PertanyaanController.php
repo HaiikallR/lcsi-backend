@@ -12,16 +12,29 @@ use App\Http\Requests\StorePertanyaanRequest;
 use App\Http\Requests\UpdatePertanyaanRequest;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
+use Illuminate\Http\Request;
 
 class PertanyaanController extends Controller
 {
-    public function index(): PertanyaanCollection
+    public function index(\Illuminate\Http\Request $request)
     {
-        $this->authorize('viewAny', Pertanyaan::class);
+        $pelanggan = $request->user();
 
-        return new PertanyaanCollection(
-            Pertanyaan::orderByDesc('id')->paginate(10)
-        );
+        $pertanyaan = Pertanyaan::orderByDesc('id')->get();
+
+        // ✅ Pastikan return JSON biasa bukan Resource
+        // agar field name konsisten
+        return response()->json([
+            'data' => $pertanyaan->map(fn($p) => [
+                'id'           => $p->id,
+                'pertanyaan'   => $p->pertanyaan,
+                'jawaban'     => $p->jawaban,
+                'kategori'     => $p->kategori,
+                // ✅ Pakai created_at standar Laravel
+                'created_at'   => $p->created_at,
+                'updated_at'   => $p->updated_at,
+            ]),
+        ]);
     }
 
     public function store(StorePertanyaanRequest $request): JsonResponse

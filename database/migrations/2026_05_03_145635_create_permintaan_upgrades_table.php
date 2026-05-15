@@ -19,6 +19,7 @@ return new class extends Migration
             $table->enum('status', ['menunggu', 'disetujui', 'ditolak'])->default('menunggu'); // Status (Misal: menunggu, disetujui, ditolak)
             $table->timestamp('disetujui_pada')->nullable(); // Waktu Persetujuan atau Penolakan (Nullable karena diisi belakangan)
             $table->timestamp('ditolak_pada')->nullable();
+            $table->string('catatan')->nullable(); // Catatan dari admin (Nullable karena opsional)
             $table->timestamps();
 
             $table->foreignId('id_pelanggan')->constrained('pelanggans')->onDelete('cascade');

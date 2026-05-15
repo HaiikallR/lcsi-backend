@@ -29,21 +29,21 @@ class PelangganFactory extends Factory
             'remember_token' => Str::random(10),
             'no_hp' => fake()->phoneNumber(),
             'alamat' => fake()->address(),
-            'paket_langganan' => fake()->randomElement(['Basic', 'Silver', 'Gold']),
+            'paket_langganan' => fake()->randomElement(['40 MBPS', '50 MBPS', '50 MBPS', '100 MBPS']),
             'status' => fake()->randomElement(['aktif', 'tidak aktif']),
         ];
     }
 
     public function aktif(): static
     {
-        return $this->state(fn (array $attributes) => [
+        return $this->state(fn(array $attributes) => [
             'status' => 'aktif',
         ]);
     }
 
     public function tidakAktif(): static
     {
-        return $this->state(fn (array $attributes) => [
+        return $this->state(fn(array $attributes) => [
             'status' => 'tidak aktif',
         ]);
     }

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('metode_bayar'); // Misal: Transfer Bank, Tunai
             $table->string('bukti_bayar')->nullable(); // Berisi nama file atau URL foto bukti transfer
             $table->text('keterangan')->nullable();
-            $table->enum('status', ['lunas', 'menunggu'])->default('menunggu');
+            $table->enum('status', ['lunas', 'menunggu', 'ditolak'])->default('menunggu');
             $table->string('bulan_tagihan');
             $table->string('tahun_tagihan');
             $table->timestamp('tanggal_bayar')->nullable();

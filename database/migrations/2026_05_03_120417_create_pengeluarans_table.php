@@ -20,8 +20,8 @@ return new class extends Migration
             $table->string('tahun');
             $table->timestamps();
 
-            $table->foreignId('id_tiket')->unique()->constrained('tikets')->onDelete('cascade');
-            $table->foreignId('id_teknisi')->constrained('teknisis')->onDelete('cascade');
+            $table->foreignId('id_tiket')->unique()->nullable()->constrained('tikets')->onDelete('cascade');
+            $table->foreignId('id_teknisi')->nullable()->constrained('teknisis')->onDelete('cascade');
         });
     }
 

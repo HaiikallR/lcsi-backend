@@ -4,42 +4,42 @@ declare(strict_types=1);
 
 namespace App\Policies;
 
-use App\Models\Admin;
+use App\Models\Pelanggan;
 use App\Models\Notifikasi;
 
 class NotifikasiPolicy
 {
-    public function viewAny(Admin $admin): bool
+    public function viewAny(Pelanggan $pelanggan): bool
     {
         return true;
     }
 
-    public function view(Admin $admin, Notifikasi $notifikasi): bool
+    public function view(Pelanggan $pelanggan, Notifikasi $notifikasi): bool
     {
         return true;
     }
 
-    public function create(Admin $admin): bool
+    public function create(Pelanggan $pelanggan): bool
     {
         return true;
     }
 
-    public function update(Admin $admin, Notifikasi $notifikasi): bool
+    public function update(Pelanggan $pelanggan, Notifikasi $notifikasi): bool
     {
         return true;
     }
 
-    public function delete(Admin $admin, Notifikasi $notifikasi): bool
+    public function delete(Pelanggan $pelanggan, Notifikasi $notifikasi): bool
     {
         return true;
     }
 
-    public function restore(Admin $admin, Notifikasi $notifikasi): bool
+    public function restore(Pelanggan $pelanggan, Notifikasi $notifikasi): bool
     {
         return true;
     }
 
-    public function forceDelete(Admin $admin, Notifikasi $notifikasi): bool
+    public function forceDelete(Pelanggan $pelanggan, Notifikasi $notifikasi): bool
     {
         return true;
     }

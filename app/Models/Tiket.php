@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Pengeluaran;
 
 class Tiket extends Model
 {
@@ -30,6 +31,26 @@ class Tiket extends Model
         return [
             'tanggal_selesai' => 'datetime',
         ];
+    }
+    protected static function booted()
+    {
+        static::updated(function ($tiket) {
+            // Cek apakah status berubah menjadi 'Selesai'
+            // dan pastikan tidak membuat pengeluaran ganda (cek jika sudah ada pengeluaran untuk tiket ini)
+            if ($tiket->isDirty('status') && $tiket->status === 'selesai') {
+
+                // Logika otomatis membuat pengeluaran
+                \App\Models\Pengeluaran::create([
+                    'id_tiket' => $tiket->id,
+                    'id_teknisi' => $tiket->id_teknisi,
+                    'judul'    => 'Biaya Teknisi: ' . $tiket->jenis_pekerjaan,
+                    'jumlah'   => $tiket->ongkos_teknisi ?? 0,
+                    'kategori' => 'Jasa Teknisi',
+                    'bulan'    => now()->translatedFormat('F'), // Contoh: Mei
+                    'tahun'    => now()->format('Y'),           // Contoh: 2026
+                ]);
+            }
+        });
     }
 
     public function pelanggan(): BelongsTo

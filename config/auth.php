@@ -42,6 +42,15 @@ return [
             'driver' => 'session',
             'provider' => 'admins',
         ],
+        // ✅ Pastikan ini ada
+        'admin' => [
+            'driver'   => 'session',
+            'provider' => 'admins',
+        ],
+        'pelanggan' => [
+            'driver' => 'sanctum',
+            'provider' => 'pelanggans'
+        ],
     ],
 
     /*
@@ -65,6 +74,15 @@ return [
         'admins' => [
             'driver' => 'eloquent',
             'model' => env('AUTH_MODEL', Admin::class),
+        ],
+        'admins' => [
+            'driver' => 'eloquent',
+            'model'  => App\Models\Admin::class,
+        ],
+        // ✅ Pastikan ini ada
+        'pelanggans' => [
+            'driver' => 'eloquent',
+            'model'  => App\Models\Pelanggan::class,
         ],
 
         // 'users' => [

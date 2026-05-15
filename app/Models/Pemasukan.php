@@ -15,6 +15,7 @@ class Pemasukan extends Model
 
     protected $fillable = [
         'id_pelanggan',
+        'id_tagihan',
         'jenis_pemasukan',
         'jumlah_bayar',
         'metode_bayar',
@@ -36,6 +37,10 @@ class Pemasukan extends Model
     public function pelanggan(): BelongsTo
     {
         return $this->belongsTo(Pelanggan::class, 'id_pelanggan', 'id');
+    }
+    public function tagihan(): BelongsTo
+    {
+        return $this->belongsTo(Tagihan::class, 'id_tagihan', 'id');
     }
 
     protected static function newFactory(): PemasukanFactory

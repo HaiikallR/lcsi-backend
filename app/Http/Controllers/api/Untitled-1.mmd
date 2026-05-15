@@ -1,0 +1,103 @@
+---
+id: 7453ee30-10ba-4b8f-80a0-acf6f6ffcbc5
+---
+classDiagram
+    direction LR
+
+    class Pelanggan {
+        +id_pelanggan: int
+        +nama: string
+        +email: string
+        +password_hash: string
+        +no_hp: string
+        +alamat: string
+        +tanggal_registrasi: string
+        +status_akun: string
+        +id_paket_berlangganan: int
+        +register()
+        +login()
+        +lihatProfil()
+        +cekSisaTagihan()
+        +bayarTagihan(id_tagihan)
+        +lihatRiwayatPembayaran()
+    }
+
+    class PaketInternet {
+        +id_paket: int
+        +nama_paket: string
+        +kecepatan_mbps: int
+        +harga_bulanan: decimal
+        +deskripsi_paket: string
+        +status_paket: string
+        +getHarga()
+        +getDeskripsi()
+    }
+
+    class Tagihan {
+        +id_tagihan: int
+        +id_pelanggan: int
+        +periode_tagihan: string
+        +jumlah_tagihan: decimal
+        +tanggal_jatuh_tempo: string
+        +status_tagihan: string
+        +tanggal_terbit_tagihan: string
+        +buatTagihan()
+        +getJumlahTagihan()
+        +getStatus()
+    }
+
+    class Pembayaran {
+        +id_pembayaran: int
+        +id_tagihan: int
+        +id_pelanggan: int
+        +tanggal_pembayaran: string
+        +jumlah_bayar: decimal
+        +metode_pembayaran: string
+        +bukti_pembayaran_url: string
+        +status_verifikasi: string
+        +id_admin_verifikasi: int
+        +catatPembayaran()
+        +verifikasiPembayaran(id_admin)
+    }
+
+    class Admin {
+        +id_admin: int
+        +username: string
+        +password_hash: string
+        +nama_admin: string
+        +role: string
+        +login()
+        +kelolaPelanggan()
+        +verifikasiRegistrasi(id_pelanggan)
+        +kelolaPaket()
+        +kelolaTagihan()
+        +verifikasiPembayaran(id_pembayaran)
+        +lihatLaporanPemasukan()
+        +lihatLaporanPengeluaran()
+        +inputPengeluaran()
+        +cetakLaporan()
+        +kelolaAdmin()
+    }
+
+    class Pengeluaran {
+        +id_pengeluaran: int
+        +tanggal_pengeluaran: string
+        +jumlah_pengeluaran: decimal
+        +deskripsi_pengeluaran: string
+        +kategori_pengeluaran: string
+        +id_admin_input: int
+        +catatPengeluaran()
+    }
+
+    %% Relasi antar Kelas
+    Pelanggan "1" -- "M" Tagihan : memiliki
+    Pelanggan "1" -- "M" Pembayaran : melakukan
+    Pelanggan "M" -- "1" PaketInternet : berlangganan
+
+    Tagihan "1" -- "1" Pembayaran : dilunasi oleh
+
+    Admin "1" -- "M" Pembayaran : memverifikasi
+    Admin "1" -- "M" Pengeluaran : mencatat
+
+    %% Tambahan: Admin juga bisa mengelola pelanggan
+    Admin "1" -- "M" Pelanggan : mengelola

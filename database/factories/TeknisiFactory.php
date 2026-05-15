@@ -20,7 +20,7 @@ class TeknisiFactory extends Factory
         return [
             'nama' => fake()->name(),
             'no_hp' => fake()->phoneNumber(),
-            'status' => fake()->randomElement(['aktif', 'siap', 'tidak aktif']),
+            'status' => fake()->randomElement(['aktif',  'tidak aktif']),
         ];
     }
 }

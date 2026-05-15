@@ -1,0 +1,39 @@
+{
+  "name": "lcsi-backend",
+  "version": "1.0.0",
+  "description": "<p align=\"center\"><a href=\"https://laravel.com\" target=\"_blank\"><img src=\"https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg\" width=\"400\" alt=\"Laravel Logo\"></a></p>",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "type": "module",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HaiikallR/lcsi-backend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HaiikallR/lcsi-backend/issues"
+  },
+  "homepage": "https://github.com/HaiikallR/lcsi-backend#readme",
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.2.4",
+    "@tailwindcss/vite": "^4.2.4",
+    "autoprefixer": "^10.5.0",
+    "laravel-vite-plugin": "^3.1.0",
+    "postcss": "^8.5.14",
+    "tailwindcss": "^4.2.4",
+    "vite": "^8.0.10"
+  },
+  "dependencies": {
+    "alpinejs": "^3.15.12",
+    "axios": "^1.16.0"
+  }
+}

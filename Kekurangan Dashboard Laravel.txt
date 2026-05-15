@@ -1,0 +1,37 @@
+Kekurangan Dashboard Laravel 
+
+- Dashboard Utama  (sudah Ok)
+
+- Data admin (sudah OK)
+
+
+- Data Pelanggan (Sudah Ok)
+
+
+- Data Teknisi (Status hanya ada dua saja => Aktif dan Tidak aktif)(sudah Ok)
+
+- Data Ticketing (Kirim WhatsApp ke Teknisi) (sudah Ok)
+
+- Data Perangkat (Sudah Ok)
+
+- Permintaan Upgrade (Sudah Ok)
+
+- FAQ (Sudah Ok)
+
+- Data Pemasukkan (Munculin Link bukti Pembayaran nya ")(Sudah ok)
+
+- Data tagihan (1 Pemasukan itu merupakan 1 tagihan ) (Sudah Ok)
+
+- Data Pengeluaran ("sediakan untuk pengeluaran lain karena tidak selalu   dari tiket" Logika Jika Tiket dari Calon Pelangan Namanya muncul)(sudah Ok)
+
+Data Tiket = Tambahkan TextField Nama calon Pelanggan dan Jika milihnya Pelanggan Terdaftar maka Ketika pilih pelanggan dipilih nomor hp dan alamat akan otomatis terisi (sudah Ok) Data tiket Jika Selesai Mentriger Data pengeluaran (sudah OK)
+
+- Tiket dan Pengeluaran (sudah Ok)
+
+- Verifikasi pembayaran (belum) (Logika nya dia membaca data pemasukkan yang status nya masih menunggu dan tampilkan bukti pembayaran nya ) (Sudah OK)
+
+- Notifikasi (Sudah Ok)
+
+(Belum Selesai)
+
+- Authentication Belum 

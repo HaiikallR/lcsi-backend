@@ -21,7 +21,7 @@ class StorepemasukanRequest extends FormRequest
             'jenis_pemasukan' => ['required', 'string', 'max:100'],
             'jumlah_bayar' => ['required', 'integer', 'min:0'],
             'metode_bayar' => ['required', 'string', 'max:50'],
-            'bukti_bayar' => ['nullable', 'string', 'max:255'],
+            'bukti_bayar' => ['nullable', 'file', 'mimes:jpg,jpeg,png,pdf', 'max:5120'],
             'keterangan' => ['nullable', 'string'],
             'status' => ['required', 'in:lunas,menunggu'],
             'bulan_tagihan' => ['required', 'string', 'max:20'],

@@ -13,6 +13,7 @@ use App\Http\Resources\PelangganResource;
 use App\Models\Pelanggan;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
+use Illuminate\Http\Request;
 
 class PelangganController extends Controller
 {
@@ -75,5 +76,47 @@ class PelangganController extends Controller
         Pelanggan::destroy($pelanggan->id);
 
         return response()->noContent();
+    }
+
+    public function dashboard(Request $request)
+    {
+        $pelanggan = $request->user();
+
+        // Hitung tagihan
+        $tagihanBelumBayar = \App\Models\Tagihan::query()
+            ->where('id_pelanggan', $pelanggan->id)
+            ->where('status', 'belum bayar')
+            ->sum('jumlah');
+
+        $tagihanMenunggu = \App\Models\Tagihan::query()
+            ->where('id_pelanggan', $pelanggan->id)
+            ->where('status', 'menunggu')
+            ->sum('jumlah');
+
+        $totalTagihanBelumLunas = \App\Models\Tagihan::query()
+            ->where('id_pelanggan', $pelanggan->id)
+            ->whereIn('status', ['belum bayar', 'menunggu'])
+            ->count();
+
+        $tagihanTerbaru = \App\Models\Tagihan::query()
+            ->where('id_pelanggan', $pelanggan->id)
+            ->orderByDesc('id')
+            ->take(3)
+            ->get(['id', 'bulan', 'tahun', 'jumlah', 'status']);
+
+        return response()->json([
+            'pelanggan' => [
+                'id'              => $pelanggan->id,
+                'nama'            => $pelanggan->nama,
+                'paket_langganan' => $pelanggan->paket_langganan,
+                'status'          => $pelanggan->status,
+            ],
+            'tagihan' => [
+                'total_belum_bayar'        => $tagihanBelumBayar,
+                'total_menunggu_verifikasi' => $tagihanMenunggu,
+                'jumlah_tagihan_aktif'     => $totalTagihanBelumLunas,
+                'terbaru'                  => $tagihanTerbaru,
+            ],
+        ]);
     }
 }
