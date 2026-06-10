@@ -21,10 +21,10 @@
 
             <div class="md:col-span-2">
                 <label class="block text-sm font-medium text-slate-700 mb-1.5">
-                    Pelanggan <span class="text-red-400">*</span>
+                    Pelanggan
                     <span class="text-slate-400 font-normal ml-1">(1 perangkat per pelanggan)</span>
                 </label>
-                <select name="id_pelanggan" required
+                <select name="id_pelanggan" 
                         class="w-full px-4 py-2.5 bg-white border border-slate-200 rounded-xl text-sm
                                focus:outline-none focus:ring-2 focus:ring-blue-500">
                     <option value="">Pilih Pelanggan...</option>

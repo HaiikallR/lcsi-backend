@@ -18,7 +18,7 @@ class PerangkatController extends Controller
 
     public function create()
     {
-        $pelanggans = Pelanggan::orderBy('nama')->get(['id', 'nama', 'paket_langganan']);
+        $pelanggans = Pelanggan::orderBydesc('nama')->get(['id', 'nama', 'paket_langganan']);
         return view('perangkat.create', compact('pelanggans'));
     }
 
@@ -40,7 +40,7 @@ class PerangkatController extends Controller
 
     public function edit(Perangkat $perangkat)
     {
-        $pelanggans = Pelanggan::orderBy('nama')->get(['id', 'nama', 'paket_langganan']);
+        $pelanggans = Pelanggan::orderBydesc('nama')->get(['id', 'nama', 'paket_langganan']);
         return view('perangkat.edit', compact('perangkat', 'pelanggans'));
     }
 
@@ -62,7 +62,7 @@ class PerangkatController extends Controller
 
     public function destroy(Perangkat $perangkat)
     {
-        $perangkat->delete();
+        $perangkat->delete($perangkat->id);
         return redirect()->route('perangkat.index')
             ->with('success', 'Perangkat berhasil dihapus.');
     }

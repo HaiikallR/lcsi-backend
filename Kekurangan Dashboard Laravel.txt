@@ -34,4 +34,8 @@ Data Tiket = Tambahkan TextField Nama calon Pelanggan dan Jika milihnya Pelangga
 
 (Belum Selesai)
 
+- Seharus nya teknisi kalau lagi kerja (on - going ) tidak bisa dipakai lagi 
+
+- Upgrade data, gimana kalau ada pelanggan yang upgrade data , missal dia di akhir bulan masa nanti ketiban jadi kek bayar nya yang langsung paket baru 
+
 - Authentication Belum 

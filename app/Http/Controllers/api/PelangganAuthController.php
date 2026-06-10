@@ -9,6 +9,7 @@ use App\Models\Pelanggan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Log;
 
 class PelangganAuthController extends Controller
 {
@@ -101,6 +102,7 @@ class PelangganAuthController extends Controller
 
         return response()->json([
             'message' => 'Device token berhasil diperbarui.',
+            'success' => true,
         ]);
     }
 }

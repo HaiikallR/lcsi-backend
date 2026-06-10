@@ -179,7 +179,7 @@
         <div class="flex items-start gap-3 p-3 bg-red-50 border border-red-100 rounded-xl mb-5">
             @include('components.ui.icons', ['icon' => 'alert-triangle', 'class' => 'w-5 h-5 text-red-500 flex-shrink-0 mt-0.5'])
             <p class="text-sm text-red-600">
-                Pelanggan akan mendapatkan notifikasi bahwa permintaan upgrade nya ditolak beserta alasannya.
+               Berikan alasan penolakkan.
             </p>
         </div>
 

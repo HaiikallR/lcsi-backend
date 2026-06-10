@@ -29,15 +29,15 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/pelanggan/bayar', [PelangganPembayaranController::class, 'bayar']);
     Route::get('/pelanggan/tagihan/{id}/pemasukan', [PelangganPembayaranController::class, 'cekPembayaran']);
     // ✅ Taruh di atas apiResource pelanggan
+    Route::post('/pelanggan/fcm-token', [PelangganAuthController::class, 'updateFcmToken']);
     Route::get('/pelanggan/upgrade', [PelangganUpgradeController::class, 'index']);
     Route::post('/pelanggan/upgrade', [PelangganUpgradeController::class, 'store']);
     Route::get('/pelanggan/notifikasi', [NotifikasiController::class, 'index']);
     Route::get('/pelanggan/pertanyaan', [PertanyaanController::class, 'index']);
     // ✅ Tambahkan route ini
-    Route::put('/pelanggan/fcm-token', [PelangganAuthController::class, 'updateFcmToken']);
     Route::apiResource('admin', AdminController::class)->names('api.admin');
     Route::apiResource('pelanggan', PelangganController::class)->names('api.pelanggan');
-    Route::put('pelanggan/{pelanggan}/fcm-token', [PelangganController::class, 'updateFcmToken'])->name('api.pelanggan.update-fcm-token');
+    Route::post('pelanggan/{pelanggan}/fcm-token', [PelangganController::class, 'updateFcmToken'])->name('api.pelanggan.update-fcm-token');
     Route::apiResource('perangkat', PerangkatController::class)->names('api.perangkat');
     Route::apiResource('teknisi', TeknisiController::class)->names('api.teknisi');
     Route::post('tiket/{tiket}/kirim-whatsapp', [TiketController::class, 'kirimWhatsapp'])->name('api.tiket.kirim-whatsapp');

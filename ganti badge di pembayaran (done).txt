@@ -1,0 +1,33 @@
+ganti badge di pembayaran (done)
+
+Upgrade data dikonsistenkan tidak ada Mbps yang double  (done)
+
+tombol keluar (done)
+
+device_token(DONEE)
+
+FAQ (Done)
+NOTIFIKASI (done) 
+PROFILE (DONE)
+
+Dimenu perangkat untuk pilih pelanggannya dijadikan sunah saja
+dan untuk upgrade data jika ditolak gimana
+
+Tiket ke pengeluaran apakah jika tiket nya di bayar di pengeluaran apakah tiket nya akan berubah status 
+
+Jadi, jika kamu ingin merevisi gambarmu di Draw.io agar 100% diakui benar oleh dosen perfeksionis:
+
+Ambil objek persegi panjang (Activation Bar) baru di Draw.io.
+
+Perkecil ukurannya sedikit, lalu tempelkan agak menonjol ke kanan di atas kotak activation bar milik PelangganController yang sedang aktif.
+
+Arahkan panah validasiDataPelanggan() melingkar dan mendarat tepat di kotak kecil baru tersebut.
+
+
+class diagram ganti dari teknisi ke pengeluaran hapuss  (done)
+
+class diagram ganti dari pelanggan ke permintaan upgrade jadi 1 to many (done)
+
+tiket ke pengeluaran 1 to 1 (done)
+
+di pengeluaran hapus relasi ke teknisi

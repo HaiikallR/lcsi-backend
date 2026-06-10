@@ -17,8 +17,11 @@ return new class extends Migration
             $table->string('merk');
             $table->string('serial_number')->unique();
             $table->enum('status', ['tersedia', 'digunakan', 'perbaikan'])->default('tersedia');
-            $table->foreignId('id_pelanggan')->unique()->constrained('pelanggans')->onDelete('cascade');
-
+            $table->foreignId('id_pelanggan')
+                ->unique()
+                ->nullable()
+                ->constrained('pelanggans')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }
