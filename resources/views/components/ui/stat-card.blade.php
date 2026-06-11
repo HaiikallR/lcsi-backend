@@ -1,6 +1,6 @@
 {{--
-    components/ui/stat-card.blade.php
-    Props: $label, $value, $icon, $colorClasses, $prefix, $suffix, $sub
+components/ui/stat-card.blade.php
+Props: $label, $value, $icon, $colorClasses, $prefix, $suffix, $sub
 --}}
 <div class="bg-white rounded-2xl border border-slate-100 p-5 shadow-sm hover:shadow-md transition-shadow duration-200">
     <div class="flex items-start justify-between">
@@ -15,8 +15,9 @@
                 <p class="text-xs text-slate-400 mt-1">{{ $sub }}</p>
             @endif
         </div>
-        <div class="w-11 h-11 rounded-xl border flex items-center justify-center flex-shrink-0 ml-3 {{ $colorClasses }}">
-            @include('Components.ui.icons', ['icon' => $icon, 'class' => 'w-5 h-5'])
+        <div
+            class="w-11 h-11 rounded-xl border flex items-center justify-center flex-shrink-0 ml-3 {{ $colorClasses }}">
+            @include('components.ui.icons', ['icon' => $icon, 'class' => 'w-5 h-5'])
         </div>
     </div>
 </div>

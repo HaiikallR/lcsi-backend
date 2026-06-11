@@ -39,6 +39,6 @@ class Badge extends Component
 
     public function render(): View|Closure|string
     {
-        return view('Components.ui.Badge');
+        return view('components.ui.badge');
     }
 }

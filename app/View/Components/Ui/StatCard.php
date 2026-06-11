@@ -47,6 +47,6 @@ class StatCard extends Component
 
     public function render(): View|Closure|string
     {
-        return view('Components.ui.stat-card');
+        return view('components.ui.stat-card');
     }
 }

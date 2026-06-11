@@ -47,6 +47,6 @@ class FlashMessage extends Component
 
     public function render(): View|Closure|string
     {
-        return view('Components.ui.flash-message');
+        return view('components.ui.flash-message');
     }
 }
