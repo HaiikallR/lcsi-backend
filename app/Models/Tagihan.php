@@ -29,6 +29,7 @@ class Tagihan extends Model
         return [
             'tanggal_bayar' => 'datetime',
             'tanggal_verifikasi' => 'datetime',
+            'jumlah' => 'integer',
         ];
     }
 

@@ -36,8 +36,8 @@ class NotifikasiController extends Controller
         // agar field name konsisten
         return response()->json([
             'data' => $notifikasi->map(fn($n) => [
-                'id'           => $n->id,
-                'id_pelanggan' => $n->id_pelanggan,
+                'id'           => (int) $n->id,
+                'id_pelanggan' => (int) $n->id_pelanggan,
                 'judul'        => $n->judul,
                 'pesan'        => $n->pesan,
                 'kategori'     => $n->kategori,

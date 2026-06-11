@@ -23,6 +23,8 @@ class Notifikasi extends Model
     protected function casts(): array
     {
         return [
+            'id' => 'integer',
+            'id_pelanggan' => 'integer',
             'created_at' => 'datetime',
             'updated_at' => 'datetime',
         ];

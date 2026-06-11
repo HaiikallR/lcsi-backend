@@ -83,17 +83,17 @@ class PelangganController extends Controller
         $pelanggan = $request->user();
 
         // Hitung tagihan
-        $tagihanBelumBayar = \App\Models\Tagihan::query()
+        $tagihanBelumBayar = (int) \App\Models\Tagihan::query()
             ->where('id_pelanggan', $pelanggan->id)
             ->where('status', 'belum bayar')
             ->sum('jumlah');
 
-        $tagihanMenunggu = \App\Models\Tagihan::query()
+        $tagihanMenunggu = (int) \App\Models\Tagihan::query()
             ->where('id_pelanggan', $pelanggan->id)
             ->where('status', 'menunggu')
             ->sum('jumlah');
 
-        $totalTagihanBelumLunas = \App\Models\Tagihan::query()
+        $totalTagihanBelumLunas = (int) \App\Models\Tagihan::query()
             ->where('id_pelanggan', $pelanggan->id)
             ->whereIn('status', ['belum bayar', 'menunggu'])
             ->count();
